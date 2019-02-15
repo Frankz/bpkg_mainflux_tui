@@ -1,16 +1,11 @@
-
+# File: home.sh
 #########################
 # home_menu
 #########################
 function home_menu() {
 
 # tput_menu: a menu driven system information program
-
-BG_BLUE="$(tput setab 4)"
-BG_BLACK="$(tput setab 0)"
-FG_GREEN="$(tput setaf 2)"
-FG_WHITE="$(tput setaf 7)"
-
+set_tput_colors
 # Save screen
 tput smcup
 
@@ -42,12 +37,15 @@ tput cup 11 0
 
 # Act on selection
 case $selection in
-  1)  echo "Mainflux channels"
+  1)  
+      echo "Mainflux channels"
       mainflux-cli channels help
       ;;
-  2)  df -h
+  2)  
+      df -h
       ;;
-  3)  if [[ $(id -u) -eq 0 ]]; then
+  3)  
+      if [[ $(id -u) -eq 0 ]]; then
         echo "Home Space Utilization (All Users)"
         du -sh /home/* 2> /dev/null
       else
@@ -57,11 +55,16 @@ case $selection in
       ;;
   6)  
       users_menu
+      #break
+      ;;
+  7)  
+      get_mainflux_server_version
+      ;;
+  0)  
       break
       ;;
-  0)  break
-      ;;
-  *)  echo "Invalid entry."
+  *)  
+      echo "Invalid entry."
       ;;
 esac
 printf "\n\nPress any key to continue."

@@ -1,15 +1,11 @@
-
+# File: users.sh
 #########################
 # users_menu
 #########################
 function users_menu() {
 
 # tput_menu: a menu driven system information program
-
-BG_BLUE="$(tput setab 4)"
-BG_BLACK="$(tput setab 0)"
-FG_GREEN="$(tput setaf 2)"
-FG_WHITE="$(tput setaf 7)"
+set_tput_colors
 
 # Save screen
 tput smcup
@@ -30,7 +26,7 @@ cat <<- _EOF_
 
 _EOF_
 
-read -p "Enter selection [0-2] > " selection
+read -p "Enter selection [0-3] > " selection
 
 # Clear area beneath menu
 tput cup 10 0
@@ -40,11 +36,14 @@ tput cup 11 0
 
 # Act on selection
 case $selection in
-  1)  echo "Do something with create..."
+  1)  
+      echo "Do something with create..."
       ;;
-  2)  echo "Do something with token..."
+  2)  
+      echo "Do something with token..."
       ;;
-  3)  echo "Back to Home"
+  3)  
+      echo "Back to Home"
       home_menu
       ;;
   0)  
@@ -52,7 +51,8 @@ case $selection in
       echo "Program terminated."
       exit
       ;;
-  *)  echo "Invalid entry."
+  *)  
+      echo "Invalid entry."
       ;;
 esac
 printf "\n\nPress any key to continue."

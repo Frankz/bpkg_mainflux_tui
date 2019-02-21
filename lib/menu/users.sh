@@ -38,9 +38,16 @@ tput cup 11 0
 case $selection in
   1)  
       echo "Do something with create..."
+      read -p "user > " user 
+      read -s -p "password > " pass
+      local mainflux_users_create=$(mainflux-cli $set_mainflux_url users create $user $pass)
+      
+  echo "$mainflux_users_create"
+  sleep 3
       ;;
   2)  
-      echo "Do something with token..."
+      #echo "Do something with token..."
+      read 
       ;;
   3)  
       echo "Back to Home"
